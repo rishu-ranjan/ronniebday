@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ronnie Turns One</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Join us for Sumaer Ved (Ronnie)'s first birthday — Saturday, November 28, 2026 at 12:30 PM, Desi District, Brandon FL.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ronnie is turning 1! 🎈">
+<meta property="og:description" content="Sumaer Ved's first birthday · Sat, Nov 28 · 12:30 PM · Desi District, Brandon. Tap to RSVP.">
+<meta property="og:image" content="https://ronnie.rishuranjan.com/og.png">
+<meta property="og:url" content="https://ronnie.rishuranjan.com/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Lexend:wght@300;400;500;600&display=swap">
+<style>
+/* Layout: a festive single column — marigold toran across the top, big hero "1", then details, release notes, RSVP. */
+:root{
+  --bg:#E9F5F9; --paper:#FFFFFF; --ink:#1B2A38; --muted:#566977; --line:#CDE2EA;
+  --marigold:#F2A100; --marigold-deep:#C9700A; --rani:#D2306A; --peacock:#0E6876; --leaf:#3E8E41;
+  --chip:#F3F9FB;
+  --display:"Baloo 2", "Trebuchet MS", system-ui, sans-serif;
+  --body:"Lexend", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0C1E26; --paper:#132F3A; --ink:#EAF4F7; --muted:#9DB6C1; --line:#25485A;
+  --marigold:#FFB423; --marigold-deep:#FFCB66; --rani:#FF6E9C; --peacock:#5CCAD6; --leaf:#6CC070; --chip:#183845; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0C1E26; --paper:#132F3A; --ink:#EAF4F7; --muted:#9DB6C1; --line:#25485A;
+  --marigold:#FFB423; --marigold-deep:#FFCB66; --rani:#FF6E9C; --peacock:#5CCAD6; --leaf:#6CC070; --chip:#183845; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;margin:0;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+.wrap{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:56px}
+h1,h2,h3{font-family:var(--display);line-height:1.05;text-wrap:balance;margin:0}
+a{color:var(--peacock)}
+:focus-visible{outline:3px solid var(--marigold);outline-offset:3px;border-radius:6px}
+
+/* toran */
+.toran{width:100%;height:84px;display:block;overflow:visible}
+.toran-holder{margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)))}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:center;margin-top:8px}
+.hero-text{min-width:0;display:flex;flex-direction:column;gap:14px}
+.eyebrow{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--peacock);font-weight:600}
+.hindi{font-family:var(--display);color:var(--rani);font-size:1.35rem;font-weight:700;letter-spacing:.02em}
+.hero h1{font-size:clamp(2.6rem,7vw,4.4rem);font-weight:800}
+.hero h1 .aka{display:block;font-size:.42em;font-weight:500;color:var(--muted);margin-top:6px}
+.hero h1 .aka b{color:var(--rani);font-weight:800}
+.lede{font-size:1.1rem;color:var(--muted);max-width:34ch;margin:0}
+.cta{display:inline-flex;align-items:center;gap:10px;align-self:flex-start;background:var(--rani);color:#fff;text-decoration:none;
+  font-weight:600;padding:14px 26px;border-radius:999px;font-size:1.05rem;box-shadow:0 6px 0 color-mix(in srgb,var(--rani) 55%,#000);transition:transform .15s}
+.cta:hover{transform:translateY(-2px)}
+.cta:active{transform:translateY(3px);box-shadow:0 2px 0 color-mix(in srgb,var(--rani) 55%,#000)}
+
+.badge{position:relative;justify-self:center;width:min(300px,78vw);aspect-ratio:1;max-width:100%}
+.photo{position:absolute;inset:8%;border-radius:50%;overflow:hidden;border:8px solid var(--paper);
+  box-shadow:0 0 0 4px var(--marigold),0 18px 40px -14px rgba(0,0,0,.35);background:var(--chip);display:grid;place-items:center}
+.photo img{width:100%;height:100%;object-fit:cover}
+.photo .ph{font-family:var(--display);font-size:5.5rem;color:var(--peacock);font-weight:800}
+.one{position:absolute;right:-6%;bottom:-6%;width:44%;aspect-ratio:1;border-radius:50%;background:var(--marigold);
+  display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:clamp(3.4rem,10vw,5.2rem);color:#fff;
+  text-shadow:4px 4px 0 var(--rani);box-shadow:0 10px 24px -8px rgba(0,0,0,.35);animation:bob 3.2s ease-in-out infinite}
+.one small{position:absolute;bottom:14%;font-size:.75rem;letter-spacing:.18em;text-shadow:none;font-family:var(--body);font-weight:600}
+@keyframes bob{50%{transform:translateY(-8px) rotate(-4deg)}}
+
+/* countdown */
+.count{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.count div{background:var(--paper);border:2px solid var(--line);border-radius:18px;min-width:92px;padding:12px 10px;text-align:center}
+.count b{display:block;font-family:var(--display);font-size:2.4rem;line-height:1;color:var(--peacock);font-variant-numeric:tabular-nums}
+.count span{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.count-cap{text-align:center;color:var(--muted);margin:10px 0 0;font-size:.95rem}
+
+/* details */
+.section-h{display:flex;flex-direction:column;gap:4px;margin-bottom:20px}
+.section-h h2{font-size:clamp(1.9rem,4.5vw,2.5rem);font-weight:800}
+.details{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.d{background:var(--paper);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:6px;min-width:0;border-top:6px solid var(--c)}
+.d .k{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.d .v{font-family:var(--display);font-size:1.5rem;font-weight:700;line-height:1.15}
+.d .s{color:var(--muted);font-size:.95rem}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.pill{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--line);background:var(--paper);color:var(--ink);text-decoration:none;
+  font:inherit;font-size:.95rem;font-weight:500;padding:9px 16px;border-radius:999px;cursor:pointer}
+.pill:hover{border-color:var(--peacock)}
+
+/* release notes */
+.notes{background:var(--paper);border-radius:24px;padding:26px 26px 22px;border:2px dashed var(--line)}
+.notes .ver{font-family:var(--display);font-weight:800;font-size:1.6rem}
+.notes .ver span{font-family:var(--body);font-size:.8rem;font-weight:500;color:var(--muted);margin-left:8px}
+.notes ul{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:10px}
+.notes li{display:grid;grid-template-columns:110px 1fr;gap:12px;align-items:baseline}
+.tag{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:999px;text-align:center;color:#fff}
+.t-new{background:var(--leaf)}.t-imp{background:var(--peacock)}.t-bug{background:var(--rani)}.t-road{background:var(--marigold-deep)}
+
+/* rsvp */
+.rsvp{background:var(--paper);border-radius:28px;padding:30px;box-shadow:0 20px 50px -30px rgba(0,0,0,.35)}
+form{display:grid;gap:18px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label,.lbl{font-size:.85rem;font-weight:600;display:block;margin-bottom:6px}
+input,textarea{width:100%;font:inherit;color:var(--ink);background:var(--chip);border:2px solid var(--line);border-radius:14px;padding:12px 14px}
+input:focus,textarea:focus{border-color:var(--peacock);outline:none}
+textarea{min-height:96px;resize:vertical}
+.choices{display:flex;flex-wrap:wrap;gap:10px}
+.choices input{position:absolute;opacity:0;pointer-events:none}
+.choices label{margin:0;cursor:pointer;border:2px solid var(--line);border-radius:999px;padding:10px 18px;font-weight:500;background:var(--chip)}
+.choices input:checked+label{background:var(--peacock);border-color:var(--peacock);color:#fff}
+.choices input:focus-visible+label{outline:3px solid var(--marigold);outline-offset:2px}
+.hint{font-size:.8rem;color:var(--muted);margin-top:4px}
+.hp{position:absolute;left:-9999px}
+.submit{border:0;justify-self:start;cursor:pointer;font:inherit}
+.msg{border-radius:16px;padding:14px 16px;font-weight:500}
+.msg.ok{background:color-mix(in srgb,var(--leaf) 16%,var(--paper))}
+.msg.err{background:color-mix(in srgb,var(--rani) 14%,var(--paper))}
+.done{text-align:center;display:grid;gap:10px;justify-items:center;padding:20px 0}
+.done .big{font-family:var(--display);font-size:2.2rem;font-weight:800;color:var(--peacock)}
+
+footer{text-align:center;color:var(--muted);font-size:.9rem}
+footer .sig{font-family:var(--display);font-size:1.3rem;color:var(--ink);font-weight:700}
+
+@media (max-width:700px){
+  .hero{grid-template-columns:1fr;text-align:left}
+  .badge{order:-1;width:min(240px,70vw)}
+  .details{grid-template-columns:1fr}
+  .row{grid-template-columns:1fr}
+  .notes li{grid-template-columns:1fr;gap:4px}
+  .notes .tag{justify-self:start}
+  .rsvp{padding:22px}
+}
+@media (prefers-reduced-motion:reduce){.one{animation:none}.cta{transition:none}}
+</style>
+</head>
+<body>
+<div class="toran-holder" aria-hidden="true"><svg class="toran" id="toran" preserveAspectRatio="none"></svg></div>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-text">
+      <span class="eyebrow">You're invited to a very small person's very big day</span>
+      <span class="hindi" lang="hi">पहला जन्मदिन</span>
+      <h1>Sumaer Ved<span class="aka">lovingly known as <b>Ronnie</b>, is turning one!</span></h1>
+      <p class="lede">One year of giggles, late nights and the best hugs in Tampa Bay. Come eat, laugh and bless our little boy.</p>
+      <a class="cta" href="#rsvp">RSVP now →</a>
+    </div>
+    <div class="badge">
+      <div class="photo">
+        <img id="photo" src="ronnie.jpg" alt="Ronnie" onerror="this.remove();document.getElementById('ph').hidden=false">
+        <span class="ph" id="ph" hidden>R</span>
+      </div>
+      <div class="one" aria-label="Turning one">1<small>YEAR</small></div>
+    </div>
+  </section>
+
+  <section aria-label="Countdown">
+    <div class="count" id="count">
+      <div><b id="cd-d">--</b><span>Days</span></div>
+      <div><b id="cd-h">--</b><span>Hours</span></div>
+      <div><b id="cd-m">--</b><span>Minutes</span></div>
+      <div><b id="cd-s">--</b><span>Seconds</span></div>
+    </div>
+    <p class="count-cap" id="count-cap">until the cake meets Ronnie</p>
+  </section>
+
+  <section>
+    <div class="section-h"><span class="eyebrow">The details</span><h2>Save the date</h2></div>
+    <div class="details">
+      <div class="d" style="--c:var(--marigold)"><span class="k">When</span><span class="v">Saturday, November 28</span><span class="s">2026</span></div>
+      <div class="d" style="--c:var(--rani)"><span class="k">Time</span><span class="v">12:30 PM</span><span class="s">Lunch &amp; celebration</span></div>
+      <div class="d" style="--c:var(--peacock)"><span class="k">Where</span><span class="v">Desi District</span><span class="s">902 E Brandon Blvd, Brandon, FL 33511</span></div>
+    </div>
+    <div class="links">
+      <a class="pill" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Desi+District+902+E+Brandon+Blvd+Brandon+FL+33511">📍 Directions</a>
+      <a class="pill" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Ronnie%27s%201st%20Birthday&amp;dates=20261128T173000Z/20261128T203000Z&amp;location=Desi%20District%2C%20902%20E%20Brandon%20Blvd%2C%20Brandon%2C%20FL%2033511&amp;details=Sumaer%20Ved%20(Ronnie)%20turns%20one!">📅 Google Calendar</a>
+      <button class="pill" type="button" id="ics">🍎 Apple / Outlook calendar</button>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-h"><span class="eyebrow">From Papa, the architect</span><h2>Release notes</h2></div>
+    <div class="notes">
+      <div class="ver">Ronnie v1.0 <span>Stable release · Nov 2026</span></div>
+      <ul>
+        <li><span class="tag t-new">New</span><span>A smile that reboots the whole household</span></li>
+        <li><span class="tag t-new">New</span><span>Giggles, now deployed several times an hour</span></li>
+        <li><span class="tag t-imp">Improved</span><span>Grip strength. Glasses, hair and phones are no longer safe</span></li>
+        <li><span class="tag t-bug">Known issue</span><span>Nap schedule is not guaranteed. Workaround: rocking</span></li>
+        <li><span class="tag t-road">Roadmap</span><span>First steps, first words, and many more birthdays with all of you</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="rsvp" id="rsvp">
+    <div class="section-h"><span class="eyebrow">Kindly reply</span><h2>Will you join us?</h2></div>
+    <div id="prev" class="msg ok" hidden></div>
+    <form id="form" novalidate>
+      <div>
+        <label for="name">Your name or family name</label>
+        <input id="name" name="name" required maxlength="80" placeholder="e.g. The Sharma family" autocomplete="name">
+      </div>
+      <div>
+        <span class="lbl" id="att-l">Are you coming?</span>
+        <div class="choices" role="radiogroup" aria-labelledby="att-l">
+          <input type="radio" name="attending" id="a-yes" value="yes" checked><label for="a-yes">Yes, we'll be there 🎉</label>
+          <input type="radio" name="attending" id="a-maybe" value="maybe"><label for="a-maybe">Maybe</label>
+          <input type="radio" name="attending" id="a-no" value="no"><label for="a-no">Sorry, can't make it</label>
+        </div>
+      </div>
+      <div class="row" id="counts">
+        <div><label for="adults">Adults</label><input id="adults" name="adults" type="number" min="0" max="20" value="2" inputmode="numeric"></div>
+        <div><label for="kids">Kids</label><input id="kids" name="kids" type="number" min="0" max="20" value="0" inputmode="numeric"></div>
+      </div>
+      <div>
+        <label for="contact">Phone or email <span style="font-weight:400;color:var(--muted)">(optional)</span></label>
+        <input id="contact" name="contact" maxlength="80" placeholder="So we can share updates" autocomplete="tel">
+        <div class="hint">Use the same one if you need to change your reply later.</div>
+      </div>
+      <div>
+        <label for="note">A wish for Ronnie, or anything we should know</label>
+        <textarea id="note" name="note" maxlength="300" placeholder="Blessings, dietary needs, high chair needed…"></textarea>
+      </div>
+      <input class="hp" tabindex="-1" autocomplete="off" name="website" id="website" aria-hidden="true">
+      <div id="err" class="msg err" hidden></div>
+      <button class="cta submit" type="submit" id="send">Send RSVP</button>
+    </form>
+    <div class="done" id="done" hidden>
+      <div class="big" id="done-h">Yay! See you on the 28th</div>
+      <p id="done-p" style="margin:0;color:var(--muted)">Ronnie is already practicing his cake smash.</p>
+      <button class="pill" type="button" id="edit">Change my reply</button>
+    </div>
+  </section>
+
+  <footer>
+    <p class="sig">With love, Rishu &amp; family</p>
+    <p>Gifts are not expected. Your blessings are the best present.</p>
+  </footer>
+</main>
+
+<script>
+(function(){
+  // ---- Toran (marigold garland) ----
+  const svg=document.getElementById('toran');
+  function drawToran(){
+    const w=Math.max(svg.clientWidth,320), h=84; svg.setAttribute('viewBox',`0 0 ${w} ${h}`);
+    const css=getComputedStyle(document.documentElement);
+    const mari=css.getPropertyValue('--marigold').trim(), deep=css.getPropertyValue('--marigold-deep').trim(),
+          rani=css.getPropertyValue('--rani').trim(), leaf=css.getPropertyValue('--leaf').trim();
+    let out=`<path d="M0 6 Q ${w/2} 46 ${w} 6" stroke="${deep}" stroke-width="2" fill="none"/>`;
+    const n=Math.round(w/22);
+    for(let i=0;i<=n;i++){
+      const t=i/n, x=t*w, y=6+80*t*(1-t); // follows the rope's curve
+      const c=i%5===2?rani:(i%2?mari:deep);
+      out+=`<circle cx="${x}" cy="${y}" r="8" fill="${c}"/><circle cx="${x}" cy="${y}" r="3" fill="${deep}" opacity=".5"/>`;
+      if(i%6===3){ // hanging mango leaf
+        out+=`<line x1="${x}" y1="${y+8}" x2="${x}" y2="${y+18}" stroke="${deep}" stroke-width="1.5"/>`+
+             `<ellipse cx="${x}" cy="${y+30}" rx="6" ry="13" fill="${leaf}"/>`;
+      }
+    }
+    svg.innerHTML=out;
+  }
+  drawToran(); addEventListener('resize',drawToran);
+  matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',drawToran);
+
+  // ---- Countdown ----
+  const T=new Date('2026-11-28T12:30:00-05:00').getTime();
+  const el=id=>document.getElementById(id), pad=n=>String(n).padStart(2,'0');
+  function tick(){
+    let d=T-Date.now();
+    if(d<=0){ el('count').hidden=true; el('count-cap').textContent= d>-4*3600e3 ? 'The party is on! 🎂' : 'Thank you for celebrating with us 💛'; return; }
+    const s=Math.floor(d/1000);
+    el('cd-d').textContent=Math.floor(s/86400); el('cd-h').textContent=pad(Math.floor(s%86400/3600));
+    el('cd-m').textContent=pad(Math.floor(s%3600/60)); el('cd-s').textContent=pad(s%60);
+  }
+  tick(); setInterval(tick,1000);
+
+  // ---- .ics download ----
+  el('ics').addEventListener('click',()=>{
+    const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Ronnie//Birthday//EN','BEGIN:VEVENT',
+      'UID:ronnie-1st-birthday-20261128@rishuranjan.com','DTSTAMP:20261022T000000Z',
+      'DTSTART:20261128T173000Z','DTEND:20261128T203000Z',"SUMMARY:Ronnie's 1st Birthday",
+      'LOCATION:Desi District\\, 902 E Brandon Blvd\\, Brandon\\, FL 33511',
+      'DESCRIPTION:Sumaer Ved (Ronnie) turns one!','END:VEVENT','END:VCALENDAR'].join('\r\n');
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'})); a.download='ronnie-birthday.ics';
+    document.body.appendChild(a); a.click(); a.remove();
+  });
+
+  // ---- RSVP ----
+  const form=el('form'), err=el('err'), done=el('done'), send=el('send');
+  const store={get(){try{return JSON.parse(localStorage.getItem('ronnie-rsvp')||'null')}catch(e){return null}},
+               set(v){try{localStorage.setItem('ronnie-rsvp',JSON.stringify(v))}catch(e){}}};
+  const toggleCounts=()=>{ el('counts').hidden=form.attending.value==='no'; };
+  form.addEventListener('change',toggleCounts);
+
+  const prior=store.get();
+  if(prior){
+    form.name.value=prior.name||''; form.contact.value=prior.contact||''; form.note.value=prior.note||'';
+    form.adults.value=prior.adults??2; form.kids.value=prior.kids??0;
+    const r=document.getElementById('a-'+prior.attending); if(r) r.checked=true;
+    el('prev').textContent='You already replied from this device. Send again to update your RSVP.'; el('prev').hidden=false;
+  }
+  toggleCounts();
+
+  function showDone(data, preview){
+    form.hidden=true; el('prev').hidden=true; done.hidden=false;
+    const msgs={yes:['Yay! See you on the 28th','Ronnie is already practicing his cake smash.'],
+                maybe:['Thanks, we hope you can make it','Update your reply any time from this page.'],
+                no:["We'll miss you!",'Thank you for letting us know. Ronnie sends a big hug.']};
+    const m=msgs[data.attending]||msgs.yes;
+    el('done-h').textContent=m[0];
+    el('done-p').textContent=preview?'Preview only: replies are saved once the site is live on your domain.':m[1];
+  }
+  el('edit').addEventListener('click',()=>{done.hidden=true;form.hidden=false;form.name.focus();});
+
+  form.addEventListener('submit',async e=>{
+    e.preventDefault(); err.hidden=true;
+    const name=form.name.value.trim();
+    if(!name){err.textContent='Please add your name so we know who is coming.';err.hidden=false;form.name.focus();return;}
+    const data={name, attending:form.attending.value,
+      adults:form.attending.value==='no'?0:Math.max(0,Math.min(20,parseInt(form.adults.value)||0)),
+      kids:form.attending.value==='no'?0:Math.max(0,Math.min(20,parseInt(form.kids.value)||0)),
+      contact:form.contact.value.trim(), note:form.note.value.trim(), website:form.website.value};
+    send.disabled=true; send.textContent='Sending…';
+    try{
+      const r=await fetch('/api/rsvp',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+      if(!r.ok){ const j=await r.json().catch(()=>null); throw new Error(j&&j.error||'server'); }
+      store.set(data); showDone(data,false);
+    }catch(ex){
+      const live=/rishuranjan\.com$/.test(location.hostname)||location.hostname.endsWith('.pages.dev');
+      if(!live){ showDone(data,true); }
+      else{ err.textContent=ex.message&&ex.message!=='server'&&ex.message!=='Failed to fetch'?ex.message:'Your RSVP did not go through. Check your connection and tap Send again.'; err.hidden=false; }
+    }finally{ send.disabled=false; send.textContent='Send RSVP'; }
+  });
+})();
+</script>
+</body>
+</html>
