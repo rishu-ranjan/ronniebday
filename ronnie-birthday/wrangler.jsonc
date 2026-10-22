@@ -1,0 +1,18 @@
+{
+  // Must match your Worker's name in the Cloudflare dashboard
+  "name": "ronniebday",
+  "main": "worker.js",
+  "compatibility_date": "2026-06-01",
+
+  // index.html, admin.html, og.png, ronnie.jpg live in ./public
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+
+  // RSVP storage — paste your KV namespace ID below (Step 2 of README)
+  "kv_namespaces": [
+    { "binding": "RSVPS", "id": "PASTE_YOUR_KV_NAMESPACE_ID_HERE" }
+  ]
+}

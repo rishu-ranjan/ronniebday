@@ -1,67 +1,60 @@
-# Ronnie's 1st Birthday Invite — deploy guide
+# Ronnie's Invite — Cloudflare **Worker** version
 
-Live address (suggested): **https://ronnie.rishuranjan.com**
-Host dashboard: **https://ronnie.rishuranjan.com/admin.html**
+Your current Worker: https://ronniebday.rishu19ranjan.workers.dev/
 
 ```
 ronnie-birthday/
-├── index.html            ← the invite guests see
-├── admin.html            ← your RSVP dashboard (passphrase protected)
-├── og.png                ← preview card shown in WhatsApp / iMessage
-├── ronnie.jpg            ← ADD THIS: your favourite photo of Ronnie (square works best)
-└── functions/api/rsvp.js ← stores RSVPs in Cloudflare KV
+├── wrangler.jsonc        ← Worker settings (paste your KV ID here)
+├── worker.js             ← handles RSVPs at /api/rsvp
+└── public/
+    ├── index.html        ← the invite
+    ├── admin.html        ← your RSVP dashboard
+    ├── og.png            ← WhatsApp preview card
+    └── ronnie.jpg        ← ADD your photo here (square, under 500 KB)
 ```
 
-## Step 1 — Add Ronnie's photo
-Save a photo as `ronnie.jpg` in this folder (square crop, ~800×800, under 500 KB).
-If it's missing, the page shows a big "R" instead, so nothing breaks.
+## Step 1 — Replace the repo contents
+In your existing GitHub repo, delete the old files (including the `functions/` folder) and copy in everything from this folder. Keep the structure exactly as above.
 
-## Step 2 — Push to a new GitHub repo
+## Step 2 — Create the RSVP storage (KV)
+1. Cloudflare Dashboard → **Storage & Databases** → **KV** → **Create namespace** → name: `ronnie-rsvps`.
+2. Copy its **Namespace ID** (a 32-character code shown in the list).
+3. Open `wrangler.jsonc` and replace `PASTE_YOUR_KV_NAMESPACE_ID_HERE` with it.
+4. Check that `"name": "ronniebday"` matches your Worker's name in the dashboard.
+
+## Step 3 — Set your dashboard passphrase
+Dashboard → **Workers & Pages** → **ronniebday** → **Settings** → **Variables and Secrets** → **Add**
+- Type: **Secret** (must be Secret, or the next deploy wipes it)
+- Name: `ADMIN_KEY`
+- Value: a passphrase only you and your wife know
+
+## Step 4 — Deploy
 ```bash
-cd ronnie-birthday
-git init
-git add .
-git commit -m "Ronnie's first birthday invite"
-git branch -M main
-git remote add origin https://github.com/rishu-ranjan/ronnie-birthday.git
-git push -u origin main
+git add -A
+git commit -m "Worker version with RSVP backend"
+git push
 ```
-(Create the empty repo `ronnie-birthday` on GitHub first. Mark it **Private** if you like; Cloudflare can still deploy it.)
+Cloudflare rebuilds automatically (watch **Deployments**; takes ~1 min).
 
-## Step 3 — Create the Cloudflare **Pages** project
-1. Cloudflare Dashboard → **Workers & Pages** → **Create** → choose the **Pages** tab → **Connect to Git**.
-   ⚠️ Make sure it's **Pages**, not a Worker (that's what served "Hello World" last time).
-2. Pick the `ronnie-birthday` repo.
-3. Build settings: Framework preset **None**, Build command **empty** (or `echo "Deploying"` if it insists), Build output directory **`/`**.
-4. **Save and Deploy**. You'll get a `ronnie-birthday.pages.dev` link.
+## Step 5 — Test
+1. Open the invite → send a test RSVP → you should see "Yay! See you on the 28th".
+2. Open `/admin.html` → enter passphrase → test entry appears. Remove it with ✕ (tap twice).
 
-## Step 4 — Create the RSVP storage (KV)
-1. Dashboard → **Storage & Databases** → **KV** → **Create namespace** → name it `ronnie-rsvps`.
-2. Back in the Pages project → **Settings** → **Bindings** → **Add** → **KV namespace**
-   - Variable name: **`RSVPS`** (exactly this)
-   - Namespace: `ronnie-rsvps`
-3. Same Settings page → **Variables and Secrets** → **Add**
-   - Type: **Secret**, Name: **`ADMIN_KEY`**, Value: a passphrase only you and your wife know.
-4. Do both for **Production** (and Preview if you want to test on preview URLs).
-5. **Deployments** → latest deployment → **Retry deployment** so the bindings take effect.
+## Step 6 — Custom domain (optional)
+**ronniebday** → **Settings** → **Domains & Routes** → **Add** → **Custom domain** → `ronnie.rishuranjan.com`.
+If you skip this, edit the `og:image` and `og:url` lines at the top of `public/index.html` to use the workers.dev address instead, so the WhatsApp preview image loads.
 
-## Step 5 — Put it on your domain
-1. Pages project → **Custom domains** → **Set up a custom domain** → `ronnie.rishuranjan.com` → **Activate**.
-2. Since rishuranjan.com is already on Cloudflare, the DNS record is created for you; it's usually live in a few minutes.
+## Where RSVPs are stored
+In **Cloudflare Workers KV**, namespace `ronnie-rsvps`, inside your own Cloudflare account. One entry per family.
 
-## Step 6 — Test before sharing
-1. Open the invite, send a test RSVP.
-2. Open `/admin.html`, enter your passphrase → the test shows up. Remove it with ✕ (tap twice).
-3. Paste the link into a WhatsApp chat with yourself to check the preview card.
-   If an old preview is cached, add `?v=2` to the end of the link.
+Two ways to see them:
+1. **Dashboard page (easiest):** `/admin.html` → passphrase → totals, every reply, notes, **Download CSV**.
+2. **Raw data:** Cloudflare Dashboard → **Storage & Databases** → **KV** → `ronnie-rsvps` → **KV Pairs**. Each key looks like `rsvp:3fa9…`; click it to see the JSON (name, attending, adults, kids, contact, note, timestamps).
 
-## Changing things later
-- Edit text directly in `index.html`, then `git commit` + `git push` — Cloudflare redeploys automatically.
-- Calendar invite assumes the party ends at **3:30 PM** — search for `20261128T203000Z` in `index.html` (two places) to change it.
-- Want a different address (e.g. `rishuranjan.com/ronnie`)? Update the `og:image` and `og:url` lines at the top of `index.html` to match.
-
-## How RSVPs work
-- Guests reply with name, yes / maybe / no, adults, kids, optional phone/email, and a note.
-- If someone replies again with the same phone/email (or the same name), it **updates** their earlier reply instead of creating a duplicate.
-- The dashboard shows expected headcount (adults + kids who said yes), maybes, declines, every note, and a **Download CSV** button for the restaurant headcount.
-- The page is marked `noindex` so it won't appear in Google; only people with the link will find it.
+## Troubleshooting
+| Symptom | Fix |
+|---|---|
+| RSVP shows "did not go through" | KV ID missing in `wrangler.jsonc`, or deploy failed — check **Deployments** log |
+| Dashboard says "Wrong passphrase" | `ADMIN_KEY` secret not set, or typo |
+| Dashboard says "storage is not set up" | KV binding name must be exactly `RSVPS` |
+| Build error about `functions/` | Old Pages folder still in repo — delete it |

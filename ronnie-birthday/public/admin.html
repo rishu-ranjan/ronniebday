@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Ronnie RSVPs</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Lexend:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#E9F5F9;--paper:#fff;--ink:#1B2A38;--muted:#566977;--line:#CDE2EA;--peacock:#0E6876;--rani:#D2306A;--leaf:#3E8E41;--mari:#C9700A;
+  --display:"Baloo 2",system-ui,sans-serif;--body:"Lexend",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#0C1E26;--paper:#132F3A;--ink:#EAF4F7;--muted:#9DB6C1;--line:#25485A;--peacock:#5CCAD6;--rani:#FF6E9C;--leaf:#6CC070;--mari:#FFCB66;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);padding:24px max(16px,env(safe-area-inset-left,0px)) 48px}
+.wrap{max-width:1000px;margin:0 auto;display:grid;gap:20px}
+h1{font-family:var(--display);margin:0;font-size:2.2rem}
+.card{background:var(--paper);border-radius:18px;padding:18px}
+input,button{font:inherit;border-radius:12px;padding:10px 14px;border:2px solid var(--line);background:var(--paper);color:var(--ink)}
+button{cursor:pointer;font-weight:600}
+button.primary{background:var(--peacock);border-color:var(--peacock);color:#fff}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.stat b{display:block;font-family:var(--display);font-size:2.2rem;line-height:1;font-variant-numeric:tabular-nums}
+.stat span{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+td.n{font-variant-numeric:tabular-nums;text-align:right}
+.chip{font-size:.75rem;font-weight:600;padding:3px 10px;border-radius:999px;color:#fff}
+.yes{background:var(--leaf)}.maybe{background:var(--mari)}.no{background:var(--rani)}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.err{color:var(--rani);font-weight:500}
+.x{border:0;background:none;color:var(--muted);padding:2px 6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Ronnie's RSVPs</h1>
+  <form class="card bar" id="login">
+    <input id="key" type="password" placeholder="Host passphrase" autocomplete="current-password" required>
+    <button class="primary">Show RSVPs</button>
+    <span class="err" id="err"></span>
+  </form>
+  <div id="data" hidden>
+    <div class="stats">
+      <div class="card stat"><b id="s-head">0</b><span>Expected guests</span></div>
+      <div class="card stat"><b id="s-ad">0</b><span>Adults (yes)</span></div>
+      <div class="card stat"><b id="s-kid">0</b><span>Kids (yes)</span></div>
+      <div class="card stat"><b id="s-maybe">0</b><span>Maybe (people)</span></div>
+      <div class="card stat"><b id="s-no">0</b><span>Declined (families)</span></div>
+    </div>
+    <div class="bar" style="margin:16px 0">
+      <button id="refresh">Refresh</button>
+      <button id="csv">Download CSV</button>
+      <span id="count" style="color:var(--muted)"></span>
+    </div>
+    <div class="card tbl">
+      <table>
+        <thead><tr><th>Name</th><th>Reply</th><th>Adults</th><th>Kids</th><th>Contact</th><th>Note</th><th>Updated</th><th></th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script>
+let KEY=''; let ROWS=[];
+try{KEY=sessionStorage.getItem('rk')||''}catch(e){}
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+async function load(){
+  $('err').textContent='';
+  const r=await fetch('/api/rsvp',{headers:{Authorization:'Bearer '+KEY}});
+  const j=await r.json().catch(()=>({error:'Could not reach the server.'}));
+  if(!r.ok){$('err').textContent=j.error||'Error';$('data').hidden=true;return;}
+  try{sessionStorage.setItem('rk',KEY)}catch(e){}
+  ROWS=j.rows; render();
+}
+function render(){
+  const yes=ROWS.filter(r=>r.attending==='yes'), maybe=ROWS.filter(r=>r.attending==='maybe');
+  const sum=(a,k)=>a.reduce((t,r)=>t+(+r[k]||0),0);
+  $('s-ad').textContent=sum(yes,'adults'); $('s-kid').textContent=sum(yes,'kids');
+  $('s-head').textContent=sum(yes,'adults')+sum(yes,'kids');
+  $('s-maybe').textContent=sum(maybe,'adults')+sum(maybe,'kids');
+  $('s-no').textContent=ROWS.filter(r=>r.attending==='no').length;
+  $('count').textContent=ROWS.length+' replies';
+  $('rows').innerHTML=ROWS.map(r=>`<tr><td><b>${esc(r.name)}</b></td><td><span class="chip ${esc(r.attending)}">${esc(r.attending)}</span></td>
+    <td class="n">${+r.adults||0}</td><td class="n">${+r.kids||0}</td><td>${esc(r.contact)}</td><td>${esc(r.note)}</td>
+    <td>${r.updated?new Date(r.updated).toLocaleString():''}</td><td><button class="x" data-id="${esc(r.id)}" title="Remove">✕</button></td></tr>`).join('')
+    ||'<tr><td colspan="8" style="color:var(--muted)">No replies yet. Share the invite link and they will show up here.</td></tr>';
+  $('data').hidden=false;
+}
+$('login').addEventListener('submit',e=>{e.preventDefault();KEY=$('key').value;load();});
+$('refresh').onclick=load;
+$('rows').addEventListener('click',async e=>{
+  const b=e.target.closest('button.x'); if(!b) return;
+  if(b.dataset.armed!=='1'){b.dataset.armed='1';b.textContent='Remove?';setTimeout(()=>{b.dataset.armed='';b.textContent='✕'},3000);return;}
+  await fetch('/api/rsvp?id='+encodeURIComponent(b.dataset.id),{method:'DELETE',headers:{Authorization:'Bearer '+KEY}}); load();
+});
+$('csv').onclick=()=>{
+  const cols=['name','attending','adults','kids','contact','note','updated'];
+  const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+  const csv=[cols.join(','),...ROWS.map(r=>cols.map(c=>q(r[c])).join(','))].join('\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='ronnie-rsvps.csv';a.click();
+};
+if(KEY){$('key').value=KEY;load();}
+</script>
+</body>
+</html>
