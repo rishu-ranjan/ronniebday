@@ -13,6 +13,6 @@
 
   // RSVP storage — paste your KV namespace ID below (Step 2 of README)
   "kv_namespaces": [
-    { "binding": "RSVPS", "id": "ronnie-rsvps" }
+    { "binding": "RSVPS", "id": "29b2cd369e4c494f99f26ecc0bbaf7a0" }
   ]
 }
