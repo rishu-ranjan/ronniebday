@@ -16,8 +16,12 @@ async function hash(s) {
   return [...new Uint8Array(buf)].slice(0, 12).map(b => b.toString(16).padStart(2, "0")).join("");
 }
 
-const isAdmin = (request, env) =>
-  Boolean(env.ADMIN_KEY) && (request.headers.get("Authorization") || "") === "Bearer " + env.ADMIN_KEY;
+// Spaces or line breaks around the saved secret or the typed passphrase are ignored
+const adminKey = env => String(env.ADMIN_KEY || "").trim();
+const isAdmin = (request, env) => {
+  const sent = (request.headers.get("Authorization") || "").replace(/^Bearer\s+/, "").trim();
+  return Boolean(adminKey(env)) && sent === adminKey(env);
+};
 
 // Guest submits or updates an RSVP
 async function saveRsvp(request, env) {
@@ -77,7 +81,10 @@ export default {
 
       if (request.method === "POST") return saveRsvp(request, env);
 
-      if (!isAdmin(request, env)) return json({ error: "Wrong passphrase." }, 401);
+      if (!adminKey(env))
+        return json({ error: "No passphrase is set on this Worker (ronniebday). Add the ADMIN_KEY secret in Cloudflare.", worker: "ronniebday" }, 500);
+
+      if (!isAdmin(request, env)) return json({ error: "Wrong passphrase.", worker: "ronniebday" }, 401);
       if (request.method === "GET") return listRsvps(env);
       if (request.method === "DELETE") {
         const id = url.searchParams.get("id") || "";
