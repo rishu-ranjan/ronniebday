@@ -89,7 +89,7 @@ function render(){
     ||'<tr><td colspan="8" style="color:var(--muted)">No replies yet. Share the invite link and they will show up here.</td></tr>';
   $('data').hidden=false;
 }
-$('login').addEventListener('submit',e=>{e.preventDefault();KEY=$('key').value;load();});
+$('login').addEventListener('submit',e=>{e.preventDefault();KEY=$('key').value.trim();load();});
 $('refresh').onclick=load;
 $('rows').addEventListener('click',async e=>{
   const b=e.target.closest('button.x'); if(!b) return;
