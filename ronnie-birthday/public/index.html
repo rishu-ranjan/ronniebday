@@ -328,7 +328,7 @@ footer p{margin:0}
   </section>
 
   <footer>
-    <p class="sig">With love, Soni &amp; family</p>
+    <p class="sig">With love, Rishu &amp; family</p>
     <p>Gifts are not expected. Your blessings are the best present.</p>
   </footer>
 </main>
@@ -458,7 +458,7 @@ footer p{margin:0}
   const strip=el('strip'); let shown=0;
   for(let m=1;m<=12;m++){
     const f=document.createElement('figure'); f.hidden=true;
-    const img=new Image(); img.alt='Ronnie at '+m+(m===1?' month':' months'); img.loading='lazy';
+    const img=new Image(); img.alt='Ronnie at '+m+(m===1?' month':' months'); img.decoding='async';
     img.onload=()=>{f.hidden=false; if(++shown) el('year').hidden=false;};
     img.onerror=()=>f.remove();
     img.src='photos/'+m+'.jpg';
